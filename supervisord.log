@@ -1,4 +1,0 @@
-2021-02-12 15:06:58,598 INFO Set uid to user 0 succeeded
-2021-02-12 15:06:58,604 INFO supervisord started with pid 17
-2021-02-12 15:06:59,607 INFO spawned: 'php' with pid 19
-2021-02-12 15:07:00,609 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
