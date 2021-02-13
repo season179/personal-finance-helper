@@ -24,27 +24,38 @@ class SocialiteController extends Controller
     {
         try {
       
-            $user = Socialite::driver('google')->user();
+            $socialiteUser = Socialite::driver('google')->user();
+
+            $user = User::firstOrCreate([
+                'provider_id' => $socialiteUser->getId(),
+            ], [
+                'email' => $socialiteUser->getEmail(),
+                'name' => $socialiteUser->getName(),
+            ]);
+
+            Auth::login($user);
+
+            return redirect()->intended('dashboard');
        
-            $finduser = User::where('google_id', $user->id)->first();
+            // $finduser = User::where('provider_id', $user->id)->first();
        
-            if ($finduser) {
+            // if ($finduser) {
        
-                Auth::login($finduser);
+            //     Auth::login($finduser);
       
-                return redirect()->intended('dashboard');
+            //     return redirect()->intended('dashboard');
        
-            } else {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                ]);
+            // } else {
+            //     $newUser = User::create([
+            //         'name' => $user->name,
+            //         'email' => $user->email,
+            //         'provider_id'=> $user->id,
+            //     ]);
       
-                Auth::login($newUser);
+            //     Auth::login($newUser);
       
-                return redirect()->intended('dashboard');
-            }
+            //     return redirect()->intended('dashboard');
+            // }
       
         } catch (Exception $e) {
             dd($e->getMessage());
