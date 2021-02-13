@@ -22,5 +22,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('auth/google', [SocialiteController::class, 'redirect']);
-Route::get('auth/google/callback', [SocialiteController::class, 'handleCallback']);
+Route::get('auth/{provider}', [SocialiteController::class, 'redirect']);
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleCallback']);

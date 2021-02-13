@@ -10,9 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class SocialiteController extends Controller
 {
-    public function redirect()
-    {
-        return Socialite::driver('google')->redirect();
+    public function redirect($provider) {
+        return Socialite::driver($provider)->redirect();
     }
         
     /**
@@ -20,13 +19,13 @@ class SocialiteController extends Controller
      *
      * @return void
      */
-    public function handleCallback()
-    {
+    public function handleCallback($provider) {
         try {
       
-            $socialiteUser = Socialite::driver('google')->user();
+            $socialiteUser = Socialite::driver($provider)->user();
 
             $user = User::firstOrCreate([
+                'provider' => $provider,
                 'provider_id' => $socialiteUser->getId(),
             ], [
                 'email' => $socialiteUser->getEmail(),
