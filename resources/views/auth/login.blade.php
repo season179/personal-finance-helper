@@ -44,13 +44,18 @@
                 </x-jet-button>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a href="{{ url('auth/google') }}">
-                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
-                </a>
-                <a href="{{ url('auth/facebook') }}">
-                    Facebook
-                </a>
+            <div class="flex items-center justify-center mt-4">
+                {{-- <div class="w-full sm:w-1/2 sm:pr-2 mb-3 sm:mb-0"> --}}
+                    <a class="w-full mx-1 text-center bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" href="{{ url('auth/google') }}">
+                        Login with Google
+                    </a>
+                    {{-- <a href="{{ url('auth/facebook') }}">
+                        Facebook
+                    </a> --}}
+                    <a class="w-full mx-1 text-center bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline" href="{{ url('auth/facebook') }}">
+                        Login with Facebook
+                    </a>
+                {{-- </div> --}}
             </div>
         </form>
     </x-jet-authentication-card>
